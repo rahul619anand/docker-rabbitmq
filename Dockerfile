@@ -12,6 +12,8 @@ RUN DEBIAN_FRONTEND=noninteractive apt-get install -y rabbitmq-server
 
 RUN rabbitmq-plugins enable rabbitmq_management
 
-EXPOSE 5672 15672
+RUN echo "[{rabbit, [{loopback_users, []}]}]." > /etc/rabbitmq/rabbitmq.config
+
+EXPOSE 5672 15672 4369
 
 CMD ["/usr/sbin/rabbitmq-server"]
